@@ -23,7 +23,33 @@ class Product:
     def __repr__(self):
         return f'<product name: {self.name}, price: {self.price}, stock: {self.stock}>'
     
-product1 = Product('Телефон', 100, 50)
-print(product1)
-product1.sell(5)
-print(product1)
+# product1 = Product('Телефон', 100, 50)
+# print(product1)
+# product1.sell(5)
+# print(product1)
+
+class Phone(Product):
+    def __init__(self, name, price, color, stock=0, discount=0, max_discount=20):
+        super().__init__(name, price, stock, discount, max_discount)
+        self.color = color
+    
+    def __repr__(self):
+        return f'<Phone name: {self.name}, price: {self.price}, stock: {self.stock}>'
+    
+phone = Phone("Iphone", 50000, 'Красный')
+print(phone)
+print(phone.color)
+
+class Divan(Product):
+    def __init__(self, name, price, color, texture, stock=0, discount=0, max_discount=20):
+        super().__init__(name, price, stock, discount, max_discount)
+        self.color = color
+        self.texture = texture
+    
+    def __repr__(self):
+        return f'<Диван name: {self.name}, price: {self.price}, stock: {self.stock}>'
+
+my_divan = Divan("Iphone", 20000, 'Бежевый', 'Велюр')
+print(my_divan)
+print(my_divan.color)
+print(my_divan.texture)
