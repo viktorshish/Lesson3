@@ -19,6 +19,9 @@ class Product:
         if item_count > self.stock:
             raise ValueError('Недостаточно товара на складе')
         self.stock -= item_count
+    
+    def get_color(self):
+        raise NotImplementedError
 
     def __repr__(self):
         return f'<product name: {self.name}, price: {self.price}, stock: {self.stock}>'
@@ -32,13 +35,12 @@ class Phone(Product):
     def __init__(self, name, price, color, stock=0, discount=0, max_discount=20):
         super().__init__(name, price, stock, discount, max_discount)
         self.color = color
-    
+
+    def get_color(self):
+        return f'Цвет корпуса {self.color}'
+
     def __repr__(self):
-        return f'<Phone name: {self.name}, price: {self.price}, stock: {self.stock}>'
-    
-phone = Phone("Iphone", 50000, 'Красный')
-print(phone)
-print(phone.color)
+        return f'<Phone name: {self.name}, price: {self.price}, stock: {self.stock}>' 
 
 class Divan(Product):
     def __init__(self, name, price, color, texture, stock=0, discount=0, max_discount=20):
@@ -46,10 +48,19 @@ class Divan(Product):
         self.color = color
         self.texture = texture
     
+    def get_color(self):
+        return f'Цвет обивки {self.color}, тип ткани {self.texture}'
+    
     def __repr__(self):
         return f'<Диван name: {self.name}, price: {self.price}, stock: {self.stock}>'
 
-my_divan = Divan("Iphone", 20000, 'Бежевый', 'Велюр')
+phone = Phone("Iphone", 50000, 'Красный')
+print(phone)
+print(phone.color)
+print(phone.get_color())
+
+my_divan = Divan("Софв", 20000, 'Бежевый', 'Велюр')
 print(my_divan)
 print(my_divan.color)
 print(my_divan.texture)
+print(my_divan.get_color())
